@@ -15,6 +15,9 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 // prompt con quanti numeri indovinati (length terzo array) e quali (console log terzo array)
 
 // ---------------------------------------------------------
+// TERMINE ANALISI
+// ---------------------------------------------------------
+
 // quantità di numeri casuali da indovinare
 const quantityOfNumbers = 5;
 // valore minimo del numero casuale
@@ -23,33 +26,59 @@ const minRange = 1;
 const maxRange = 100;
 // array che contiene i numeri dati dall'utente
 const userNumbersArray = [];
+// array che contiene i numeri indovinati
+const guessedNumbersArray = [];
 
+// array che contiene i numeri generati casualmente
 let mysteryNumbersArray = generateRandomNumbers(
   quantityOfNumbers,
   minRange,
   maxRange
 );
-// todo test
-console.log('array numeri misteriosi', mysteryNumbersArray);
 
+// Messaggio iniziale con istruzioni e numeri da memorizzare
 let gameRulesMessage = alert(
   `Memorizza questi numeri: ${mysteryNumbersArray}.
-  Tra 30 secondi scrivi i numeri visualizzati uno alla volta. Vediamo quanti te ne ricordi.`
+
+  Tra 30 secondi scrivi i numeri visualizzati uno alla volta.
+  
+  Vediamo quanti ne ricordi.`
 );
 
-setTimeout(askNumbers, 5000);
+// timer di 30 secondi al termine del quale vengono chiesti i numeri
+setTimeout(askNumbers, 30000);
 // ---------------------------------------------------------
 // UTILITY FUNCTIONS
 // ---------------------------------------------------------
-// chiedo all'utente un numero univoco finchè ne ottengo 5 e lo salvo in un array
+// chiedo all'utente un numero univoco finchè ne ottengo 5 e li salvo in un array
 function askNumbers() {
+  // finchè non ottengo 5 numeri univoci
   while (userNumbersArray.length < quantityOfNumbers) {
     const userInput = parseInt(prompt('dimmi un numero tra 1 e 100'));
-    if (!userNumbersArray.includes(userInput)) {
+    if (
+      // inserisco numero in array solo se non è già incluso
+      !userNumbersArray.includes(userInput)
+    ) {
       userNumbersArray.push(userInput);
+      //   todo
+      console.log('array user number', userNumbersArray);
+    }
+    // se userInput è presente in mysteryNumbersArray (numero ricordato correttamente),
+    // e non è già presente in guessedNumbersArray
+    // faccio push in guessedNumbersArray
+    if (
+      mysteryNumbersArray.includes(userInput) &&
+      !guessedNumbersArray.includes(userInput)
+    ) {
+      guessedNumbersArray.push(userInput);
+      //   todo
+      console.log('array indovinati', guessedNumbersArray);
     }
   }
-  console.log('array numeri utente', userNumbersArray);
+  //   messaggio esito del gioco
+  alert(`Hai ricordato correttamente ${guessedNumbersArray.length} numeri.
+  Numeri ricordati correttamente: ${guessedNumbersArray}.`);
+  console.log('lunghezza', guessedNumbersArray.length);
 }
 
 // genera un array di x elementi con numeri casuali tra minRange e maxRange (inclusi)
