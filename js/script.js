@@ -63,8 +63,6 @@ function askNumbers() {
       userInput <= maxRange
     ) {
       userNumbersArray.push(userInput);
-      //   todo
-      console.log('array user number', userNumbersArray);
     }
     // se userInput è presente in mysteryNumbersArray (numero ricordato correttamente),
     // e non è già presente in guessedNumbersArray
@@ -74,8 +72,6 @@ function askNumbers() {
       !guessedNumbersArray.includes(userInput)
     ) {
       guessedNumbersArray.push(userInput);
-      //   todo
-      console.log('array indovinati', guessedNumbersArray);
     }
   }
   //   messaggio esito del gioco
