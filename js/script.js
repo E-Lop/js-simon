@@ -46,7 +46,7 @@ let gameRulesMessage = alert(
 );
 
 // timer di 30 secondi al termine del quale vengono chiesti i numeri
-setTimeout(askNumbers, 30000);
+setTimeout(askNumbers, 3000);
 // ---------------------------------------------------------
 // UTILITY FUNCTIONS
 // ---------------------------------------------------------
@@ -76,8 +76,7 @@ function askNumbers() {
   }
   //   messaggio esito del gioco
   alert(`Hai ricordato correttamente ${guessedNumbersArray.length} numeri.
-  Numeri ricordati correttamente: ${guessedNumbersArray}.`);
-  console.log('lunghezza', guessedNumbersArray.length);
+  Numeri ricordati correttamente: ${guessedNumbersArray.join(', ')}.`);
 }
 
 // genera un array di x elementi con numeri casuali tra minRange e maxRange (inclusi)
