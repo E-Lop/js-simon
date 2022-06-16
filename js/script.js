@@ -57,7 +57,10 @@ function askNumbers() {
     const userInput = parseInt(prompt('dimmi un numero tra 1 e 100'));
     if (
       // inserisco numero in array solo se non è già incluso
-      !userNumbersArray.includes(userInput)
+      !userNumbersArray.includes(userInput) &&
+      //   e se è compreso tra i valori minimi e massimi del gioco
+      userInput >= minRange &&
+      userInput <= maxRange
     ) {
       userNumbersArray.push(userInput);
       //   todo
