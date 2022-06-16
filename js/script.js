@@ -21,17 +21,36 @@ const quantityOfNumbers = 5;
 const minRange = 1;
 // valore massimo del numero casuale
 const maxRange = 100;
+// array che contiene i numeri dati dall'utente
+const userNumbersArray = [];
 
 let mysteryNumbersArray = generateRandomNumbers(
   quantityOfNumbers,
   minRange,
   maxRange
 );
+// todo test
 console.log('array numeri misteriosi', mysteryNumbersArray);
 
+let gameRulesMessage = alert(
+  `Memorizza questi numeri: ${mysteryNumbersArray}.
+  Tra 30 secondi scrivi i numeri visualizzati uno alla volta. Vediamo quanti te ne ricordi.`
+);
+
+setTimeout(askNumbers, 5000);
 // ---------------------------------------------------------
 // UTILITY FUNCTIONS
 // ---------------------------------------------------------
+// chiedo all'utente un numero univoco finchè ne ottengo 5 e lo salvo in un array
+function askNumbers() {
+  while (userNumbersArray.length < quantityOfNumbers) {
+    const userInput = parseInt(prompt('dimmi un numero tra 1 e 100'));
+    if (!userNumbersArray.includes(userInput)) {
+      userNumbersArray.push(userInput);
+    }
+  }
+  console.log('array numeri utente', userNumbersArray);
+}
 
 // genera un array di x elementi con numeri casuali tra minRange e maxRange (inclusi)
 // quantityOfNumbers --> quantità elementi da creare
