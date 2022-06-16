@@ -13,3 +13,46 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 // salvataggio numeri utente in array
 // se numeri random include numero utente, push dentro terzo array
 // prompt con quanti numeri indovinati (length terzo array) e quali (console log terzo array)
+
+// ---------------------------------------------------------
+// quantità di numeri casuali da indovinare
+const quantityOfNumbers = 5;
+// valore minimo del numero casuale
+const minRange = 1;
+// valore massimo del numero casuale
+const maxRange = 100;
+
+let mysteryNumbersArray = generateRandomNumbers(
+  quantityOfNumbers,
+  minRange,
+  maxRange
+);
+console.log('array numeri misteriosi', mysteryNumbersArray);
+
+// ---------------------------------------------------------
+// UTILITY FUNCTIONS
+// ---------------------------------------------------------
+
+// genera un array di x elementi con numeri casuali tra minRange e maxRange (inclusi)
+// quantityOfNumbers --> quantità elementi da creare
+// minRange --> valore minimo del numero casuale
+// maxRange --> valore massimo del numero casuale
+function generateRandomNumbers(quantityOfNumbers, minRange, maxRange) {
+  // genero array per numeri casuali
+  const randomNumbersArray = [];
+
+  // genero elementi finchè array.length = quantityOfNumbers
+  while (randomNumbersArray.length < quantityOfNumbers) {
+    const randomNumber = getRndInteger(minRange, maxRange);
+    // se il numero non è gia presente nell'array allora lo aggiungo
+    if (!randomNumbersArray.includes(randomNumber)) {
+      randomNumbersArray.push(randomNumber);
+    }
+  }
+  return randomNumbersArray;
+}
+
+// generatore di numeri casuali tra min e max (inclusi)
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
